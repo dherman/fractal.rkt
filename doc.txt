@@ -1,0 +1,49 @@
+_Fractal_
+_fractal_
+
+This collection provides three files:
+
+ _fractal.ss_: exports everything
+ _model.ss_: just the underlying computations
+ _window.ss_: the GUI code
+
+This is a fun example of a simple fractal, similar to the Koch curve.
+
+======================================================================
+
+DATA DEFINITIONS -----------------------------------------------------
+
+A direction is one of:
+
+  - 'N
+  - 'E
+  - 'S
+  - 'W
+
+A point is:
+
+  - (cons nat nat)
+
+A path is a non-empty list of points.
+
+
+PROCEDURES -----------------------------------------------------------
+
+> (fractal-window [w 300] [h 300]) :: [nat * nat] -> frame<%>
+
+Displays a window with a fractal image. Click the window to advance to
+the next iteration.
+
+> (fractal-iteration n origin len) :: nat * point * nat -> path
+
+Computes the path for iteration `n', starting at point `point' and with segment
+length `len'.
+
+> (directions-for n dir) :: nat * direction -> (listof direction)
+
+Computes the segment directions for iteration `n', starting in direction `dir'.
+
+> (path-for dirs origin len) :: (listof direction) * point * nat -> path
+
+Computes the path for the directions `dirs' computed by _directions-for_, starting
+at point `point' and with segment length `len'.
